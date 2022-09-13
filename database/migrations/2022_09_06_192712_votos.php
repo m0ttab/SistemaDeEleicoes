@@ -11,7 +11,8 @@ return new class extends Migration
     {
         Schema::create('votos', function (Blueprint $table) {
             $table->increments("id");
-
+            
+            $table->dateTime("data_hora", 255);
             $table->string("cadidato", 255);
             $table->string("zona",100);
             $table->string("secao", 100);
