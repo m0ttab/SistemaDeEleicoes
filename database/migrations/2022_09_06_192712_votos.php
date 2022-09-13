@@ -6,11 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create('votos', function (Blueprint $table) {
@@ -18,16 +14,11 @@ return new class extends Migration
 
             $table->string("cadidato", 255);
             $table->string("zona",100);
-            $table->string("seção", 100);
+            $table->string("secao", 100);
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         //
