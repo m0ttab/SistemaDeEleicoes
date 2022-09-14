@@ -6,7 +6,7 @@
 
 <form id="form">
     <input type='hidden' name='_token' value='{{csrf_token()}}'/>
-    <input type="hidden" value="{{ $periodo->id }}" name="id"/>
+    <input type="hidden" value="{{ $eleitor->id }}" name="id"/>
     <div class="form-group">
         <label>Nome:</label>
         <input class="form-control" type='text' name='nome' value="{{ $eleitor->nome }}" placeholder="Informe o nome"/>

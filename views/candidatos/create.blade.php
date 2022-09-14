@@ -19,17 +19,18 @@
         <input class="form-control" type='number' name='numero'/>
     </div>
     <div class="form-group">
-        <label>Cargo:</label> //selecione o cargo
-        <select class="form-control" id="periodo" name="periodo_id">
+        <label>Cargo:</label>
+        <select class="form-control" id="cargo" name="cargo">
+        <option value="dep_est">Selecione o Cargo</option>
         <option value="presidente">Presidente</option>
         <option value="governador">Governador</option>
         <option value="dep_fed">Deputado Federal</option>
         <option value="dep_est">Deputado Estadual</option>
-
+        <option value="senador">Senador</option>
        </select> 
         </div>
     <div class="form-group">
-        <label>Período:</label> //selecione o periodo
+        <label>Período:</label>
         <select class="form-control" id="periodo" name="periodo_id">
         <option value="">Selecione o Período</option>
       </select>    
@@ -53,6 +54,7 @@
     }
   }
   getPeriodos();
+
   document.getElementById('form').onsubmit = (e) => {
       
     e.preventDefault();
@@ -73,30 +75,6 @@
       }
         
     });
-  }
-</script>
-
-<script>
-    document.getElementById('form').onsubmit = (e) => {
-      
-      e.preventDefault();
-      var form_data = new FormData(document.getElementById('form'));
-      
-      fetch('/candidatos/store', {
-        
-        method: 'POST',
-        body: form_data
-        
-      }).then((req) => {
-        
-        if(req.status == 200){
-            alert('Formulário enviado!');
-            document.getElementById('form').reset();
-        }else{
-            alert('Erro no cadastro!');
-        }
-        
-      });
   }
 </script>
 

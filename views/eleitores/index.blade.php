@@ -4,7 +4,7 @@
 
     <h1>Eleitores</h1>
 
-    @if(count($periodos)==0)
+    @if(count($eleitores)==0)
         <p>Nenhum eleitor cadastrado!</p>
     @else
     <table class="table">
@@ -18,7 +18,7 @@
             </tr>
         </thead>
         <tbody>
-        @foreach($periodos as $periodo)
+        @foreach($eleitor as $eleitor)
         
             <tr id="per{{$periodo->id}}">
                 <td>{{$eleitor->nome}}</td>
@@ -33,7 +33,7 @@
         </tbody>
     </table>
     @endif
-    <a class="btn btn-primary" href="/periodos/create">Novo Eleitor</a>
+    <a class="btn btn-primary" href="/eleitores/create">Novo Eleitor</a>
     <script>
         function apagar(id){
             fetch('/eleitores/'+ id +'/destroy').then((req) => {
