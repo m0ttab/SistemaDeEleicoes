@@ -18,7 +18,7 @@
             </tr>
         </thead>
         <tbody>
-        @foreach($eleitor as $eleitor)
+        @foreach($eleitores as $eleitor)
         
             <tr id="per{{$periodo->id}}">
                 <td>{{$eleitor->nome}}</td>
