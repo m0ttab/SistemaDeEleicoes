@@ -18,7 +18,29 @@ class VotacaoController extends Controller
     }
 
     function create(){
-        return view('votacao.create');
+
+        $periodos = DB::select('select * from periodos');
+
+        $periodo_id = null;
+
+        foreach($periodos as $periodo){
+
+            $ini = strtotime($periodo->dt_inicio);
+            $fim = strtotime($periodo->dt_fim);
+            $agora = strtotime(date('Y-m-d'));
+
+            if($agora >= $ini && $agora <= $fim){
+      
+                $periodo_id = $periodo->id;
+                    
+            }
+        
+        }
+
+        return view('votacao.create', [
+            'periodo_id' => $periodo_id
+        ]);
+
     }
 
     function store(Request $request){
@@ -26,12 +48,30 @@ class VotacaoController extends Controller
         $request = $request->all();
         unset($request['_token']);
 
-        $dt_hoje = date('Y-m-d');
-        $periodo = DB::select('SELECT * FROM periodos WHERE dt_inicio >= :dt_hoje AND dt_fim <= :dt_hoje;', ['dt_hoje' => $dt_hoje]);
+        $periodos = DB::select('select * from periodos');
 
-        if($periodo->rowCount() == 1){
+        $periodo_id = null;
 
-            $periodo_id = $periodo[0]['id'];
+        foreach($periodos as $periodo){
+
+            if($periodo->ano == date('Y')){
+
+                $ini = strtotime($periodo->dt_inicio);
+                $fim = strtotime($periodo->dt_fim);
+                $agora = strtotime(date('Y-m-d'));
+
+                if($agora >= $ini && $agora <= $fim){
+      
+                    $periodo_id = $periodo->id;
+                    
+                }
+            
+            }
+        
+        }
+
+        if(isset($periodo_id)){
+
             $eleitor_id = $request['eleitor'];
 
             $votantes = DB::select('SELECT * FROM votantes WHERE periodo = :periodo_id AND eleitor = :eleitor_id;', [':periodo_id' => $periodo_id, ':eleitor_id' => $eleitor_id]);

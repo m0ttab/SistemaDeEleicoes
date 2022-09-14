@@ -7,16 +7,16 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="/cursos">Candidatos</a>
+                            <a class="nav-link" href="/candidatos">Candidatos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/turmas">Eleitores</a>
+                            <a class="nav-link" href="/eleitores">Eleitores</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/periodos">Períodos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/respostas">Votar</a>
+                            <a class="nav-link" href="/votacao">Votar</a>
                         </li>
                     </ul>
                 </div>

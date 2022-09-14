@@ -13,11 +13,11 @@
     </div>
     <div class="form-group">
         <label>Início:</label>
-        <input class="form-control" type='datetime-local' name='inicio' value="{{ $periodo->inicio }}"/>
+        <input class="form-control" type='datetime-local' name='dt_inicio' value="{{ $periodo->dt_inicio }}"/>
     </div>
     <div class="form-group">
         <label>Fim:</label>
-        <input class="form-control" type='datetime-local' name='fim' value="{{ $periodo->fim }}"/>
+        <input class="form-control" type='datetime-local' name='dt_fim' value="{{ $periodo->dt_fim }}"/>
     </div>
     <button class="btn btn-dark" type='submit'>Alterar</button>
     <button class="btn btn-dark" type='reset'>Cancelar</button>

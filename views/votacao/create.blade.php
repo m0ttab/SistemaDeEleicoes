@@ -10,6 +10,7 @@
 
 @else
 
+<!--
 <form id="form">
   <input type="hidden" name="_token" value="{{csrf_token()}}">
   <input type="hidden" name="periodo_id" value="{{$periodo_id}}">
@@ -119,6 +120,8 @@
         });
     }
 </script>
+
+  -->
 
 @endif
 

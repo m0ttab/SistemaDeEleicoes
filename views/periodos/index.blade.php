@@ -21,8 +21,8 @@
         
             <tr id="per{{$periodo->id}}">
                 <td>{{$periodo->nome}}</td>
-                <td>{{date('d/m/Y', strtotime($periodo->inicio))}}</td>
-                <td>{{date('d/m/Y', strtotime($periodo->fim))}}</td>
+                <td>{{date('d/m/Y', strtotime($periodo->dt_inicio))}}</td>
+                <td>{{date('d/m/Y', strtotime($periodo->dt_fim))}}</td>
                 <td><a class="btn btn-dark" href="/periodos/{{$periodo->id}}/edit">Editar</a></td>
                 <td><a class="btn btn-dark" onclick="apagar({{$periodo->id}})">Remover</a></td>
             </tr>
