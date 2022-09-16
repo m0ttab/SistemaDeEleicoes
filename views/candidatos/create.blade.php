@@ -21,17 +21,19 @@
     <div class="form-group">
         <label>Cargo:</label>
         <select class="form-control" id="cargo" name="cargo">
-        <option value="dep_est">Selecione o Cargo</option>
+        <option>Selecione o Cargo</option>
         <option value="presidente">Presidente</option>
+        <!--
         <option value="governador">Governador</option>
         <option value="dep_fed">Deputado Federal</option>
         <option value="dep_est">Deputado Estadual</option>
         <option value="senador">Senador</option>
+-->
        </select> 
         </div>
     <div class="form-group">
         <label>Período:</label>
-        <select class="form-control" id="periodo" name="periodo_id">
+        <select class="form-control" id="periodos" name="periodo_id">
         <option value="">Selecione o Período</option>
       </select>    
     </div>

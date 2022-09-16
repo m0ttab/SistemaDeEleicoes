@@ -12,11 +12,11 @@
     </div>
     <div class="form-group">
         <label>Início:</label>
-        <input class="form-control" type='datetime-local' name='dt_inicio' id="dt_inicio"/>
+        <input class="form-control" type='date' name='dt_inicio' id="dt_inicio"/>
     </div>
     <div class="form-group">
         <label>Fim:</label>
-        <input class="form-control" type='datetime-local' name='dt_fim' id="dt_fim"/>
+        <input class="form-control" type='date' name='dt_fim' id="dt_fim"/>
     </div>
     <button class="btn btn-dark" type='submit'>Enviar</button>
     <button class="btn btn-dark" type='reset'>Cancelar</button>

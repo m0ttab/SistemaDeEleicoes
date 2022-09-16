@@ -13,8 +13,8 @@ return new class extends Migration
             $table->increments("id");
 
             $table->string("nome", 100);
-            $table->string("dt_inicio", 20);
-            $table->string("dt_fim", 20);
+            $table->date("dt_inicio", 20);
+            $table->date("dt_fim", 20);
             $table->timestamps();
         });
     }
