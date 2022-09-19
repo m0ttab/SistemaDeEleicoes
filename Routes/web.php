@@ -25,6 +25,8 @@ Route::get('/api/periodos', function(){
     echo json_encode($respostas);
 
 });
+
+/*
 Route::get('/api/eleitores', function(){
 
     $respostas = DB::select('select * from eleitores');
@@ -39,6 +41,7 @@ Route::get('/api/candidatos', function(){
     echo json_encode($respostas);
 
 });
+*/
 
 Route::get('/periodos', [PeriodosController::class, 'index']);
 Route::get('/periodos/create', [PeriodosController::class, 'create']);
