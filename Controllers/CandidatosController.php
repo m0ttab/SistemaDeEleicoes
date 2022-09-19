@@ -15,6 +15,30 @@ class CandidatosController extends Controller
         ]);
     }
 
+    function verificar_candidato($data, $id = null){
+
+        $candidatos = DB::select('select * from candidatos');
+          
+        $permissao = true;
+          
+        foreach($candidatos as $candidato){
+
+            if($candidato->id != $id){
+                
+                if($data['numero'] == $candidato->numero){
+                    
+                    $permissao = false;
+
+                }
+
+            }
+            
+        }
+          
+        return $permissao;
+
+    }
+
     function create(){
         return view('candidatos.create');
     }
@@ -25,9 +49,31 @@ class CandidatosController extends Controller
         
         unset($data['_token']);
 
-        if(!empty($data['nome']) && !empty($data['partido']) && !empty($data['numero']) && !empty($data['cargo']) && !empty($data['periodo'])){
+        $permissao = $this->verificar_candidato($data);
 
-            DB::insert("INSERT INTO candidatos(nome, partido, numero, cargo, periodo) VALUES (:nome, :partido, :numero, :cargo, :periodo);", $data);
+        if($permissao){
+
+            if(!empty($data['nome']) && !empty($data['partido']) && !empty($data['numero']) && !empty($data['cargo']) && !empty($data['periodo'])){
+
+                DB::insert("INSERT INTO candidatos(nome, partido, numero, cargo, periodo) VALUES (:nome, :partido, :numero, :cargo, :periodo);", $data);
+
+                echo json_encode([
+                    'mensagem' => 'Candidato cadastrado com sucesso!'
+                ]);
+        
+            }else{
+        
+                echo json_encode([
+                    'mensagem' => 'Preencha todos os campos!'
+                ]);
+        
+            }
+      
+        }else{
+            
+            echo json_encode([
+                'mensagem' => 'Erro! Talvez o candidato com este número já exista!'
+            ]);
 
         }
 
@@ -37,7 +83,7 @@ class CandidatosController extends Controller
 
     function edit($id){
         
-        $candidatos = DB::select("SELECT * FROM candidatos WHERE id = ?", [$id]);
+        $candidatos = DB::select("SELECT * FROM candidatos WHERE id = :id", [':id' => $id]);
 
         return view('candidatos.edit', ['candidato' => $candidatos[0]]);
 
@@ -49,17 +95,39 @@ class CandidatosController extends Controller
         
         unset($data['_token']);
 
-        if(!empty($data['nome']) && !empty($data['partido']) && !empty($data['numero']) && !empty($data['cargo']) && !empty($data['periodo'])){
+        $permissao = $this->verificar_candidato($data, $data['id']);
 
-            DB::update("UPDATE candidatos SET nome = :nome, partido = :partido, numero = :numero, cargo = :cargo, periodo = :periodo WHERE id = :id", $data);
+        if($permissao){
+
+            if(!empty($data['nome']) && !empty($data['partido']) && !empty($data['numero']) && !empty($data['cargo']) && !empty($data['periodo'])){
+
+                DB::update("UPDATE candidatos SET nome = :nome, partido = :partido, numero = :numero, cargo = :cargo, periodo = :periodo WHERE id = :id", $data);
+
+                echo json_encode([
+                    'mensagem' => 'Candidato atualizado com sucesso!'
+                ]);
         
+            }else{
+        
+                echo json_encode([
+                    'mensagem' => 'Preencha todos os campos!'
+                ]);
+        
+            }
+      
+        }else{
+            
+            echo json_encode([
+                'mensagem' => 'Erro! Talvez o candidato com este número já exista!'
+            ]);
+
         }
 
         //return redirect('/cursos');
     }
 
     function destroy($id){
-        DB::delete("DELETE FROM candidatos WHERE id = ?", [$id]);
+        DB::delete("DELETE FROM candidatos WHERE id = :id", [':id' => $id]);
 
         //return redirect('/cursos');
     }

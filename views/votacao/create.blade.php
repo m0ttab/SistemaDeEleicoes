@@ -4,13 +4,9 @@
 
 <h1>Votação</h1>
 
-@if($periodo_id == null)
+@if($permissao)
 
-<p>Você está fora do período de inscrições!</p>
-
-@else
-
-<form id="form">
+<form method="POST" action="/eleicoes/public/votacao/store" id="form">
   <input type="hidden" name="_token" value="{{csrf_token()}}">
   <div class="form-group">
     <input class="form-control" type="text" name="titulo" placeholder="Informe seu titulo de eleitor">
@@ -26,29 +22,39 @@
 </div>
 <script>
     
-    document.getElementById('form').onsubmit = (e) => {
+    // document.getElementById('form').onsubmit = (e) => {
       
-        e.preventDefault();
-        var form_data = new FormData(document.getElementById('form'));
+    //     e.preventDefault();
+    //     var form_data = new FormData(document.getElementById('form'));
         
-        fetch('/votacao/store', {
+    //     fetch('/votacao/store', {
           
-          method: 'POST',
-          body: form_data
+    //       method: 'POST',
+    //       body: form_data
           
-        }).then((req) => {
+    //     }).then((req) => {
           
-          if(req.status == 200){
-              alert('Formulário enviado!');
-              document.getElementById('form').reset();
-          }else{
-              alert('Erro no cadastro!');
-          }
+    //       if(req.status == 200){
+
+    //         req.json().then((res) => {
+
+    //           alert(res.mensagem);
+    //           document.getElementById('form').reset();
+
+    //         });
+
+    //       }else{
+    //           alert('Erro no cadastro!');
+    //       }
           
-        });
-    }
+    //     });
+    // }
 
 </script>
+
+@else
+
+<p>Você está fora do período de inscrições!</p>
 
 @endif
 

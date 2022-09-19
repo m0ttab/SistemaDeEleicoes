@@ -4,7 +4,7 @@
 
 <h1>Alterar Período</h1>
 
-<form id="form">
+<form method="POST" action="/periodos/update" id="form">
     <input type='hidden' name='_token' value='{{csrf_token()}}'/>
     <input type="hidden" value="{{ $periodo->id }}" name="id"/>
     <div class="form-group">
@@ -13,11 +13,11 @@
     </div>
     <div class="form-group">
         <label>Início:</label>
-        <input class="form-control" type='datetime-local' name='dt_inicio' value="{{ $periodo->dt_inicio }}"/>
+        <input class="form-control" type='date' name='dt_inicio' value="{{ date('Y-m-d', strtotime($periodo->dt_inicio)) }}"/>
     </div>
     <div class="form-group">
         <label>Fim:</label>
-        <input class="form-control" type='datetime-local' name='dt_fim' value="{{ $periodo->dt_fim }}"/>
+        <input class="form-control" type='date' name='dt_fim' value="{{ date('Y-m-d', strtotime($periodo->dt_fim)) }}"/>
     </div>
     <button class="btn btn-dark" type='submit'>Alterar</button>
     <button class="btn btn-dark" type='reset'>Cancelar</button>
@@ -37,7 +37,15 @@
       }).then((req) => {
         
         if(req.status == 200){
-            alert('Formulário enviado!');
+
+            req.json().then((res) => {
+
+                alert(res.mensagem);
+
+                document.getElementById('form').reset();
+
+            });
+            
         }else{
             alert('Erro no cadastro!');
         }

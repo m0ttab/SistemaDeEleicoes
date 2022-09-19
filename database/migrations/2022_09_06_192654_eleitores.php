@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string("titulo", 12);
             $table->string("zona", 100);
             $table->string("secao", 100);
+            $table->unique('titulo');
             $table->timestamps();
         });
     }

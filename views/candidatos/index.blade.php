@@ -21,14 +21,14 @@
         <tbody>
         @foreach($candidatos as $candidato)
         
-            <tr id="per{{$periodo->id}}">
+            <tr id="can{{$candidato->id}}">
                 <td>{{$candidato->nome}}</td>
                 <td>{{$candidato->partido}}</td>
                 <td>{{$candidato->numero}}</td>
                 <td>{{$candidato->cargo}}</td>
                 <td>{{$candidato->periodo}}</td>
-                <td><a class="btn btn-dark" href="/periodos/{{$periodo->id}}/edit">Editar</a></td>
-                <td><a class="btn btn-dark" onclick="apagar({{$periodo->id}})">Remover</a></td>
+                <td><a class="btn btn-dark" href="/candidatos/{{$candidato->id}}/edit">Editar</a></td>
+                <td><a class="btn btn-dark" onclick="apagar({{$candidato->id}})">Remover</a></td>
             </tr>
             
         @endforeach
@@ -38,16 +38,20 @@
     <a class="btn btn-primary" href="/candidatos/create">Novo Candidato</a>
     <script>
         function apagar(id){
-            fetch('/candidatos/'+ id +'/destroy').then((req) => {
-                
-                if(req.status == 200){
-                    alert('Excluído com sucesso!');
-                    document.getElementById('per'+id).remove();
-                }else{
-                    alert('Erro ao excluir!');
-                }
-                
-            });
+            if(confirm('Tem certeza que deseja excluir?')){
+
+                fetch('/candidatos/'+ id +'/destroy').then((req) => {
+
+                    if(req.status == 200){
+                        alert('Excluído com sucesso!');
+                        document.getElementById('can'+id).remove();
+                    }else{
+                        alert('Erro ao excluir!');
+                    }
+                    
+                });
+
+            }
         }
     </script>
 

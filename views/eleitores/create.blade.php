@@ -12,15 +12,15 @@
     </div>
     <div class="form-group">
         <label>Título:</label>
-        <input class="form-control" type='number' name='titulo'/>
+        <input class="form-control" type='number' name='titulo' placeholder="Informe o título"/>
     </div>
     <div class="form-group">
         <label>Zona:</label>
-        <input class="form-control" type='text' name='zona' placeholder="Informe o nome"/>
+        <input class="form-control" type='text' name='zona' placeholder="Informe a zona"/>
     </div>
     <div class="form-group">
         <label>Seção:</label>
-        <input class="form-control" type='text' name='secao' placeholder="Informe o nome"/>
+        <input class="form-control" type='text' name='secao' placeholder="Informe a seção"/>
     </div>
     <button class="btn btn-dark" type='submit'>Enviar</button>
     <button class="btn btn-dark" type='reset'>Cancelar</button>
@@ -40,8 +40,12 @@
       }).then((req) => {
         
         if(req.status == 200){
-            alert('Formulário enviado!');
-            document.getElementById('form').reset();
+            req.json().then((res) => {
+
+                alert(res.mensagem);
+                document.getElementById('form').reset();
+
+            });
         }else{
             alert('Erro no cadastro!');
         }

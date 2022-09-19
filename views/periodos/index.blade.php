@@ -34,16 +34,22 @@
     <a class="btn btn-primary" href="/periodos/create">Novo Período</a>
     <script>
         function apagar(id){
-            fetch('/periodos/'+ id +'/destroy').then((req) => {
+
+            if(confirm('Tem certeza que deseja excluir?')){
+
+                fetch('/periodos/'+ id +'/destroy').then((req) => {
                 
-                if(req.status == 200){
-                    alert('Excluído com sucesso!');
-                    document.getElementById('per'+id).remove();
-                }else{
-                    alert('Erro ao excluir!');
-                }
-                
-            });
+                    if(req.status == 200){
+                        alert('Excluído com sucesso!');
+                        document.getElementById('per'+id).remove();
+                    }else{
+                        alert('Erro ao excluir!');
+                    }
+                    
+                });
+
+            }
+            
         }
     </script>
 

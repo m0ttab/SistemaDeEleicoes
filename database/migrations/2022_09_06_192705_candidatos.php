@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string("numero", 20);
             $table->string("cargo", 155);
             $table->string("periodo", 155);
+            $table->unique('numero');
             $table->timestamps();
         });
     }

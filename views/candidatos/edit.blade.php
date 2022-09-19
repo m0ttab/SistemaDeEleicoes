@@ -17,24 +17,26 @@
     </div>
     <div class="form-group">
         <label>Número:</label>
-        <input class="form-control" type='number' name='numero' value="{{ $candidato->numero }}"/>
+        <input class="form-control" type='number' name='numero' value="{{ $candidato->numero }}" placeholder="Informe o número"/>
     </div>
     <div class="form-group">
         <label>Cargo:</label>
         <select class="form-control" id="cargo" name="cargo" value="{{ $candidato->cargo }}">
-        <option value="dep_est">Selecione o Cargo</option>
-        <option value="presidente">Presidente</option>
-        <option value="governador">Governador</option>
-        <option value="dep_fed">Deputado Federal</option>
-        <option value="dep_est">Deputado Estadual</option>
-        <option value="senador">Senador</option>
-       </select> 
-        </div>
+          <option value="dep_est">Selecione o Cargo</option>
+          <option value="presidente">Presidente</option>
+          <!--
+          <option value="governador">Governador</option>
+          <option value="dep_fed">Deputado Federal</option>
+          <option value="dep_est">Deputado Estadual</option>
+          <option value="senador">Senador</option>
+          -->
+        </select> 
+    </div>
     <div class="form-group">
         <label>Período:</label>
-        <select class="form-control" id="periodo" name="periodo_id" value="{{ $candidato->periodo }}">
-        <option value="">Selecione o Período</option>
-      </select>    
+        <select class="form-control" id="periodos" name="periodo" value="{{ $candidato->periodo }}">
+          <option value="">Selecione o Período</option>
+        </select>    
     </div>
     <button class="btn btn-dark" type='submit'>Alterar</button>
     <button class="btn btn-dark" type='reset'>Cancelar</button>
@@ -55,25 +57,33 @@
   }
   getPeriodos();
 
-    document.getElementById('form').onsubmit = (e) => {
+  document.getElementById('form').onsubmit = (e) => {
       
-      e.preventDefault();
-      var form_data = new FormData(document.getElementById('form'));
-      
-      fetch('/eleitores/update', {
+    e.preventDefault();
+    var form_data = new FormData(document.getElementById('form'));
         
-        method: 'POST',
-        body: form_data
-        
-      }).then((req) => {
-        
-        if(req.status == 200){
-            alert('Formulário enviado!');
-        }else{
-            alert('Erro no cadastro!');
-        }
-        
-      });
+    fetch('/candidatos/update', {
+          
+      method: 'POST',
+      body: form_data
+          
+    }).then((req) => {
+          
+      if(req.status == 200){
+  
+          req.json().then((res) => {
+  
+              alert(res.mensagem);
+  
+              document.getElementById('form').reset();
+  
+          });
+  
+      }else{
+        alert('Erro no cadastro!');
+      }
+          
+    });
   }
 </script>
 

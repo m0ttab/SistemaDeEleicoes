@@ -20,13 +20,13 @@
         <tbody>
         @foreach($eleitores as $eleitor)
         
-            <tr id="per{{$periodo->id}}">
+            <tr id="el{{$eleitor->id}}">
                 <td>{{$eleitor->nome}}</td>
                 <td>{{$eleitor->titulo}}</td>
                 <td>{{$eleitor->zona}}</td>
                 <td>{{$eleitor->secao}}</td>
-                <td><a class="btn btn-dark" href="/periodos/{{$periodo->id}}/edit">Editar</a></td>
-                <td><a class="btn btn-dark" onclick="apagar({{$periodo->id}})">Remover</a></td>
+                <td><a class="btn btn-dark" href="/eleitores/{{$eleitor->id}}/edit">Editar</a></td>
+                <td><a class="btn btn-dark" onclick="apagar({{$eleitor->id}})">Remover</a></td>
             </tr>
             
         @endforeach
@@ -36,16 +36,20 @@
     <a class="btn btn-primary" href="/eleitores/create">Novo Eleitor</a>
     <script>
         function apagar(id){
-            fetch('/eleitores/'+ id +'/destroy').then((req) => {
-                
-                if(req.status == 200){
-                    alert('Excluído com sucesso!');
-                    document.getElementById('per'+id).remove();
-                }else{
-                    alert('Erro ao excluir!');
-                }
-                
-            });
+            if(confirm('Tem certeza que deseja excluir?')){
+
+                fetch('/eleitores/'+ id +'/destroy').then((req) => {
+
+                    if(req.status == 200){
+                        alert('Excluído com sucesso!');
+                        document.getElementById('el'+id).remove();
+                    }else{
+                        alert('Erro ao excluir!');
+                    }
+                    
+                });
+
+            }
         }
     </script>
 

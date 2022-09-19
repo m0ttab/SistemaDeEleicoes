@@ -36,8 +36,15 @@
       }).then((req) => {
         
         if(req.status == 200){
-            alert('Formulário enviado!');
-            document.getElementById('form').reset();
+
+            req.json().then((res) => {
+
+                alert(res.mensagem);
+
+                document.getElementById('form').reset();
+
+            });
+            
         }else{
             alert('Erro no cadastro!');
         }

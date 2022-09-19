@@ -13,7 +13,7 @@
     </div>
     <div class="form-group">
         <label>Título:</label>
-        <input class="form-control" type='number' name='titulo' value="{{ $eleitor->titulo }}"/>
+        <input class="form-control" type='number' name='titulo' placeholder="Informe o titulo" value="{{ $eleitor->titulo }}"/>
     </div>
     <div class="form-group">
         <label>Zona:</label>
@@ -41,7 +41,14 @@
       }).then((req) => {
         
         if(req.status == 200){
-            alert('Formulário enviado!');
+
+            req.json().then((res) => {
+
+                alert(res.mensagem);
+                document.getElementById('form').reset();
+
+            });
+
         }else{
             alert('Erro no cadastro!');
         }

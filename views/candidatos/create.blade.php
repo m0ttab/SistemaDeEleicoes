@@ -4,7 +4,7 @@
 
 <h1>Cadastrar Candidato</h1>
 
-<form id="form">
+<form method="POST" action="/eleicoes/public/candidatos/store" id="form">
     <input type='hidden' name='_token' value='{{csrf_token()}}'/>
     <div class="form-group">
         <label>Nome:</label>
@@ -16,7 +16,7 @@
     </div>
     <div class="form-group">
         <label>Número:</label>
-        <input class="form-control" type='number' name='numero'/>
+        <input class="form-control" type='number' name='numero' placeholder="informe o número"/>
     </div>
     <div class="form-group">
         <label>Cargo:</label>
@@ -30,10 +30,10 @@
         <option value="senador">Senador</option>
 -->
        </select> 
-        </div>
+    </div>
     <div class="form-group">
-        <label>Período:</label>
-        <select class="form-control" id="periodos" name="periodo_id">
+      <label>Período:</label>
+      <select class="form-control" id="periodos" name="periodo">
         <option value="">Selecione o Período</option>
       </select>    
     </div>
@@ -43,6 +43,7 @@
 </form>
 
 <script>
+
   async function getPeriodos(){
     const req = await fetch('/api/periodos');
     const res = await req.json();
@@ -55,6 +56,7 @@
         
     }
   }
+
   getPeriodos();
 
   document.getElementById('form').onsubmit = (e) => {
@@ -70,8 +72,15 @@
     }).then((req) => {
         
       if(req.status == 200){
-          alert('Formulário enviado!');
-          document.getElementById('form').reset();
+
+          req.json().then((res) => {
+
+              alert(res.mensagem);
+
+              document.getElementById('form').reset();
+
+          });
+
       }else{
           alert('Erro no cadastro!');
       }
