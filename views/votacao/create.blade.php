@@ -6,7 +6,7 @@
 
 @if($permissao)
 
-<form method="POST" action="/eleicoes/public/votacao/store" id="form">
+<form method="POST" action="/votacao/store" id="form">
   
   <input type="hidden" name="_token" value="{{csrf_token()}}">
   <div class="form-group">
