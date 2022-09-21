@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string("candidato", 255);
             $table->string("zona",100);
             $table->string("secao", 100);
+            $table->foreign('zona')->references('zona')->on('eleitores')->onDelete('cascade');
+            $table->foreign('secao')->references('secao')->on('eleitores')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -3,6 +3,13 @@
 @section("container")
 
 <h1>Resultados vencedores</h1>
+
+@if(!isset($resultadosFinais))
+
+    <p>Não há nenhum voto!</p>
+
+@else
+
 <table class="table">
     <thead>
         <tr>
@@ -52,4 +59,5 @@
 @endif
 @endforeach
 @endforeach
+@endif
 @endsection

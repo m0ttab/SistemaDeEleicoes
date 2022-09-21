@@ -14,6 +14,7 @@ return new class extends Migration
 
             $table->string("eleitor", 100);
             $table->string("periodo", 100);
+            $table->foreign('periodo')->references('id')->on('periodos')->onDelete('cascade');
             $table->timestamps();
         });
     }

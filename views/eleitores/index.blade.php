@@ -26,7 +26,7 @@
                 <td>{{$eleitor->zona}}</td>
                 <td>{{$eleitor->secao}}</td>
                 <td><a class="btn btn-dark" href="/eleitores/{{$eleitor->id}}/edit">Editar</a></td>
-                <td><a class="btn btn-dark" onclick="apagar({{$eleitor->id}})">Remover</a></td>
+                <td><a class="btn btn-danger" onclick="apagar({{$eleitor->id}})">Remover</a></td>
             </tr>
             
         @endforeach

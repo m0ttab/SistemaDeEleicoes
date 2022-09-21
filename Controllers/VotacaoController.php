@@ -124,7 +124,7 @@ class VotacaoController extends Controller
 
             }else{
 
-              $candidatos = DB::select('SELECT * FROM candidatos WHERE numero = :numero AND cargo = :cargo;', [':numero' => $numero, ':cargo' => $cargo]);
+              $candidatos = DB::select('SELECT * FROM candidatos WHERE numero = :numero AND cargo = :cargo AND periodo = :periodo;', [':numero' => $numero, ':cargo' => $cargo, ':periodo' => $periodo_id]);
 
               if(empty($candidatos)){
 

@@ -28,7 +28,7 @@
                 <td>{{$candidato->cargo}}</td>
                 <td>{{$candidato->periodo}}</td>
                 <td><a class="btn btn-dark" href="/candidatos/{{$candidato->id}}/edit">Editar</a></td>
-                <td><a class="btn btn-dark" onclick="apagar({{$candidato->id}})">Remover</a></td>
+                <td><a class="btn btn-danger" onclick="apagar({{$candidato->id}})">Remover</a></td>
             </tr>
             
         @endforeach

@@ -18,6 +18,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/votacao">Votar</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/resultado">Acompanhar resultados</a>
+                        </li>
                     </ul>
                 </div>
             </nav>
