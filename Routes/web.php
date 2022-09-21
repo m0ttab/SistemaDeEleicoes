@@ -58,6 +58,7 @@ Route::post('/eleitores/update', [EleitoresController::class, 'update']);
 Route::get('/eleitores/{id}/destroy', [EleitoresController::class, 'destroy']);
 
 Route::get('/candidatos', [CandidatosController::class, 'index']);
+Route::get('/', [CandidatosController::class, 'index']);
 Route::get('/candidatos/create', [CandidatosController::class, 'create']);
 Route::post('/candidatos/store', [CandidatosController::class, 'store']);
 Route::get('/candidatos/{id}/edit', [CandidatosController::class, 'edit']);
@@ -67,3 +68,6 @@ Route::get('/candidatos/{id}/destroy', [CandidatosController::class, 'destroy'])
 //Route::get('/votacao', [CandidatosController::class, 'index']);
 Route::get('/votacao', [VotacaoController::class, 'create']);
 Route::post('/votacao/store', [VotacaoController::class, 'store']);
+
+
+Route::get('/resultado', [VotacaoController::class, 'resultados']);
